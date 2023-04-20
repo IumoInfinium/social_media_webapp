@@ -1,0 +1,235 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+/*HEADER*/
+.logo > img {
+    width: 100px;
+    cursor: pointer;
+}
+
+.search > label > input {
+   border: none;
+   color: #919397;
+   font-size: 15px;
+   background-color: #EFEFEF;
+   border-radius: 5px;
+   padding-left: 12px;
+   padding-right: 12px;
+   padding-top: 7px;
+   padding-bottom: 7px;
+}
+
+.menu > ul > li > img {
+    width: 23px;
+}
+
+ul > li {
+    list-style: none;
+    display: inline;
+    margin: 15px;
+    cursor: pointer;
+}
+
+header > nav {
+    padding: 17px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header {
+    border-bottom: 1px solid #DBDBDB;
+    background-color: #FFFFFF;
+}
+
+header > nav > .menu > ul > span {
+    background-color: #ED4956;
+    color: #FFFFFF;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 12px;
+    border-radius: 50px;
+    position: relative;
+    left: 107px;
+    bottom: 16px;
+    cursor: pointer;
+}
+
+/*USER*/
+
+.profile {
+    width: 700px;
+    height: 170px;
+    margin: auto;
+    margin-top:6em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 30px;
+    padding-bottom: 5em;
+    color: #262626;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.profile > .profile-photo > img {
+    width: 12em;
+    border-radius: 50%;
+
+
+}
+
+.profile-user {
+    /*height: 170px;*/
+    display: flex;
+    margin-left:5em;
+    margin-right:auto;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.profile-user > .settings {
+    display: flex;
+}
+
+.profile-user > .settings > button > img {
+    width: 23px;
+}
+
+.profile-user > .settings > .user-name {
+    font-size: 27px;
+    font-weight: 100;
+    margin-right: 20px;
+}
+
+.profile-user > .settings > .edit-button {
+    margin-right: 20px;
+    background-color: #FFF;
+    border: 1px solid #DBDBDB;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+.profile-user > .settings > .follow-button{
+    display: block;
+    background-color: black;
+    border-radius: 2em;
+    color : white;
+    padding : 5px 10px 5px 10px;
+    text-decoration:none;
+    margin-right:3px;
+}
+.profile-user > .settings > .settings-button  {
+    border: none;
+    background-color: #FFF;
+    cursor: pointer;
+    text-decoration : none;
+    display: flex;
+    flex-direction : column;
+    justify-content:center;
+
+}
+
+.setting-button-img {
+    width: 10%;    
+    background:transparent;
+    border: none;
+    
+}
+.profile-user > .settings, .profile-user > .name {
+    margin-left: 13px;
+}
+
+.user-info {
+   display: flex;
+   flex-direction:column;
+   justify-content: center; 
+   overflow:hidden;
+   color : gray;
+   
+}
+
+.user-profile-info {
+    margin: 2px;
+    font-size : .9em;
+    
+    border:0;
+    background:transparent;
+}
+
+/*MAIN*/
+
+main > .options {
+    margin-top: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #8E8E8E;
+}
+
+main > .options > ul li {
+    padding: 20px;
+}
+
+main > .feed {
+    width: 1000px;
+    height: 170px;
+    margin: auto;
+    text-align: center;
+
+}
+
+main > .feed > ul li > div > img {
+    width: 280px;
+    text-align:center;
+}
+    main > .feed > ul {
+     display:flex;
+     flex-wrap: wrap;    
+    }
+
+        main > .feed > ul li {
+            display:flex;
+            text-align:center;
+            height:290px   ;
+        }
+            main > .feed > ul li > div {
+                display : flex;
+                flex-direction : column;
+                justify-content : flex-end;
+            }
+            main > .feed > ul li > div > a {
+                /*margin-left: -50%;*/
+                background-color : #48a7f5;
+                color : white;
+                border-top-left-radius:10em;
+                border-top-right-radius:10em;
+                text-decoration:none;
+                padding:.3em;
+                margin-top:-1.7em;
+            }
+          main > .feed > ul li > div > a:hover{
+                /*margin-left: -50%;*/
+                background-color : #48a7f5;
+                color : white;
+                font-style:bold;
+                border-top-left-radius:9em;
+                border-top-right-radius:9em;
+                text-decoration:none;
+                padding:.5em;
+                margin-top:-1.7em;
+            }
