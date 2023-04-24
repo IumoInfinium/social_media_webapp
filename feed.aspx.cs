@@ -27,14 +27,14 @@ public partial class feed : System.Web.UI.Page
         string user_query = "select * from accounts where username ='" + Session["username"] + "'";
         SqlDataAdapter user_ad = new SqlDataAdapter(user_query, conn);
         DataSet user_ds= new DataSet();
-        user_ad.Fill(user_ds);
+        int user_exist =  user_ad.Fill(user_ds);
 
+        if (user_exist == 0) Response.Redirect("login.aspx");
         Label8.Text = Session["username"].ToString();
 
         Label9.Text = user_ds.Tables[0].Rows[0][1].ToString();
 
-        if (!IsPostBack)
-        {
+        if (!IsPostBack){
             string query = @"
                 select
                 p.postid,
@@ -46,10 +46,27 @@ public partial class feed : System.Web.UI.Page
             ad = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
 
-            ad.Fill(ds);
+            int feed_count = ad.Fill(ds);
 
-            feed_repeater.DataSource = ds;
-            feed_repeater.DataBind();
+            if(feed_count> 0){
+                feed_repeater.DataSource = ds;
+                feed_repeater.DataBind();
+            }
+            else{
+                noFeed_Label.Text = "Seems like you don't have any following.."; 
+            }
+
+            string suggestion_query = @"SELECT * from accounts where username != '" + Session["username"].ToString() + "'";
+            SqlDataAdapter suggestion_ad = new SqlDataAdapter(suggestion_query, conn);
+            DataSet ds2 = new DataSet();
+
+            int suggestion_count = suggestion_ad.Fill(ds2);
+
+            if (suggestion_count == 0) noSuggestion_Label.Text = "You have no suggestions right now..";
+            else {
+                feedSuggestion_Repeater.DataSource = ds2;
+                feedSuggestion_Repeater.DataBind();
+            }
         }
     }
     protected void LikePost_Btn(object sender, CommandEventArgs e)

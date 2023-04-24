@@ -58,7 +58,7 @@
                 </div>
                 <div class="panel register flex justify-content-center">
                     <p>Don't have an account?</p>
-                    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Sign In</asp:LinkButton>
+                    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Sign Up</asp:LinkButton>
                     
                 </div>
                 <div class="app-download flex direction-column align-items-center">

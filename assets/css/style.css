@@ -536,3 +536,17 @@ body {
     text-decoration: none;
     color : black;
 }
+
+.no-feed-label {
+    color: gray;
+    text-align: center;
+    padding: 0;
+    padding-top: 12em;
+
+}
+.no-suggestion-label {
+   color: gray;
+    text-align: center;
+    padding: 0;
+    
+}

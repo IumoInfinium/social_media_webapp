@@ -174,6 +174,13 @@
 
                 </ItemTemplate>
           </asp:Repeater>
+          <div class="no-feed-label">
+              <div>
+                  <asp:Label ID="noFeed_Label" runat="server" Text=""></asp:Label>
+              </div>
+          </div>
+          
+          
         <%--<div class="post">
           <div class="info">
             <div class="user">
@@ -266,24 +273,31 @@
           <div>
             <p class="suggestion-text">Suggestions for you</p>
           </div>
-          <div class="action-div">
-            <button class="seeall-btn">See All</button>
-          </div>
         </div>
-        <div class="profile-card">
-          <div class="status-pic">
-            <img src="./assets/imgs/follow-img/follow-1.jpg" />
+          <asp:Repeater runat="server" ID ="feedSuggestion_Repeater"> 
+              <ItemTemplate>
+                    <div class="profile-card">
+                      <div class="status-pic">
+                        <img src="./assets/imgs/follow-img/follow-1.jpg" />
+                      </div>
+                      <div>
+                          <asp:Label ID="suggestion_username" runat="server" class="pro-user"  Text='<%# Eval("username") %>'></asp:Label>
+                        <%--<p class="sug-text">New to Instagram&nbsp;</p>--%>
+                      </div>
+                      <div class="action-div">
+                          <asp:LinkButton ID="follow_LinkButton" runat="server" class="action-btn link-remover" Style="color: #3badf7;" CommandName="follow_user" CommandArgument='<%#Eval("id") %>'>
+                              <asp:Label ID="suggestion_follow" runat="server" Text="Follow"></asp:Label>
+                          </asp:LinkButton>
+                      </div>
+                    </div>
+              </ItemTemplate>
+          </asp:Repeater>
+          <div class="no-suggestion-label">
+              <div>
+                  <asp:Label ID="noSuggestion_Label" runat="server" Text=""></asp:Label>
+              </div>
           </div>
-          <div>
-            <p class="pro-user">stoicarmy</p>
-            <p class="sug-text">New to Instagram&nbsp;</p>
-          </div>
-          <div class="action-div">
-            <button class="action-btn">Follow</button>
-          </div>
-        </div>
-
-        <div class="profile-card">
+<%--        <div class="profile-card">
           <div class="status-pic">
             <img src="./assets/imgs/follow-img/follow-2.jpg" />
           </div>
@@ -332,7 +346,7 @@
             <button class="action-btn">Follow</button>
           </div>
           
-        </div>
+        </div>--%>
         <div class="quick-links-wrapper" style="padding-top:15px;">
           <div class="quick-link">About</div>
           <div class="quick-link">Help</div>
