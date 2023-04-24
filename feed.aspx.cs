@@ -16,6 +16,8 @@ public partial class feed : System.Web.UI.Page
     SqlCommand cmd;
     SqlDataAdapter ad;
     Image like_img;
+
+    string user_id;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["username"] == null || Session["loggedIn"] == null) Response.Redirect("login.aspx");
@@ -32,6 +34,7 @@ public partial class feed : System.Web.UI.Page
         if (user_exist == 0) Response.Redirect("login.aspx");
         Label8.Text = Session["username"].ToString();
 
+        user_id = user_ds.Tables[0].Rows[0][0].ToString();
         Label9.Text = user_ds.Tables[0].Rows[0][1].ToString();
 
         if (!IsPostBack){
@@ -55,8 +58,8 @@ public partial class feed : System.Web.UI.Page
             else{
                 noFeed_Label.Text = "Seems like you don't have any following.."; 
             }
-
-            string suggestion_query = @"SELECT * from accounts where username != '" + Session["username"].ToString() + "'";
+             
+            string suggestion_query = "SELECT * from accounts a where a.id != "+ user_id;
             SqlDataAdapter suggestion_ad = new SqlDataAdapter(suggestion_query, conn);
             DataSet ds2 = new DataSet();
 
@@ -127,4 +130,13 @@ public partial class feed : System.Web.UI.Page
         }
     }
 
+    protected void FollowUser(object sender, CommandEventArgs e)
+    {
+        if (e.CommandName == "follow_user"){
+            string query = "INSERT into follows values (" + e.CommandArgument + "," + user_id + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "')";
+            cmd = new SqlCommand(query, conn);
+            cmd.ExecuteNonQuery();
+            
+        }
+    }
 }

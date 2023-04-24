@@ -285,7 +285,7 @@
                         <%--<p class="sug-text">New to Instagram&nbsp;</p>--%>
                       </div>
                       <div class="action-div">
-                          <asp:LinkButton ID="follow_LinkButton" runat="server" class="action-btn link-remover" Style="color: #3badf7;" CommandName="follow_user" CommandArgument='<%#Eval("id") %>'>
+                          <asp:LinkButton ID="follow_LinkButton" runat="server" class="action-btn link-remover" Style="color: #3badf7;" OnCommand="FollowUser" CommandName="follow_user" CommandArgument='<%#Eval("id") %>'>
                               <asp:Label ID="suggestion_follow" runat="server" Text="Follow"></asp:Label>
                           </asp:LinkButton>
                       </div>
