@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
         <link rel="stylesheet" href="./assets/css/profile.css"/>
-        <link rel="stylesheet" href="./assets/csss/style.css" />
-        <link rel="shortcut icon" href="./assets/imgs/instagram.png" type="image/x-icon">
+        <link rel="stylesheet" href="./assets/csss/styles.css" />
+        <link rel="shortcut icon" href="./assets/imgs/instagram.png" type="image/x-icon" />
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -16,16 +16,24 @@
         <section class="profile-user">
             <div class="settings">
 
-                <asp:Label ID="Label1" runat="server" Text="yashm" class="user-name"></asp:Label>
-                <asp:Button ID="Button1" runat="server" Text="Edit Profile" class="edit-button" OnClick="Button1_Click"/>
-                
-<%--                <asp:LinkButton ID="LinkButton2" runat="server" CssClass="follow-button">
-                    Follow
-                </asp:LinkButton>--%>
+                <asp:Label ID="Label1" runat="server" Text="<unknown>" class="user-name"></asp:Label>
 
-                    <asp:LinkButton ID="LinkButton1" runat="server" class="settings-button">
+
+                
+                <asp:Button ID="Button1" runat="server" Text="Edit" class="edit-button" OnClick="Button1_Click" />
+
+                <asp:LinkButton runat="server" ID="FollowControl_LinkButton" OnCommand="FollowControlCmd_LinkButton" class="link-remover" CommandName="follow">
+                    <asp:Button ID="ProfileFollow_Button" runat="server" Text="Follow" class="follow-button " />
+                </asp:LinkButton>
+                
+
+              
+                
+                
+
+<%--                    <asp:LinkButton ID="LinkButton1" runat="server" class="settings-button">
                         <img src="./assets/imgs/setting.png"  class="setting-button-img "alt="">    
-                    </asp:LinkButton>
+                </asp:LinkButton>--%>    
             </div>
             <br />
             

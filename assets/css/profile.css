@@ -121,16 +121,22 @@ header > nav > .menu > ul > span {
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
+    box-shadow:none;
     cursor: pointer;
+    margin-top:6px;
 }
-.profile-user > .settings > .follow-button{
+.profile-user > .settings > a >.follow-button{
     display: block;
-    background-color: black;
-    border-radius: 2em;
+    background-color: #48a7f5;
+    border-color:#48a7f5;
+    border-radius: 1em;
     color : white;
-    padding : 5px 10px 5px 10px;
-    text-decoration:none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding:.4em;
+    box-shadow:none;
     margin-right:3px;
+    margin-top:6px;
 }
 .profile-user > .settings > .settings-button  {
     border: none;
@@ -144,7 +150,7 @@ header > nav > .menu > ul > span {
 }
 
 .setting-button-img {
-    width: 10%;    
+    width: 9%;    
     background:transparent;
     border: none;
     
