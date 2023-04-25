@@ -22,9 +22,8 @@
                 
                 <asp:Button ID="Button1" runat="server" Text="Edit" class="edit-button" OnClick="Button1_Click" />
 
-                <asp:LinkButton runat="server" ID="FollowControl_LinkButton" OnCommand="FollowControlCmd_LinkButton" class="link-remover" CommandName="follow">
-                    <asp:Button ID="ProfileFollow_Button" runat="server" Text="Follow" class="follow-button " />
-                </asp:LinkButton>
+                <asp:Button ID="ProfileFollow_Button" runat="server" Text="Follow" class="follow-button" CommandName="follow" OnClick="ProfileFollow_Button_Click" />
+                
                 
 
               
@@ -54,11 +53,11 @@
             <div class="name">
                 <div class="user-info">
                     
-                    <asp:TextBox ID="TextBox1" runat="server"  class="user-profile-info" Text=""  ></asp:TextBox>
-                    <asp:TextBox ID="TextBox2" runat="server" class="user-profile-info" Text=""  ></asp:TextBox>
-                    <asp:TextBox ID="TextBox3" runat="server" class="user-profile-info" Text="" ></asp:TextBox>
+                    <asp:TextBox ID="TextBox1" runat="server"  class="user-profile-info" Text=""  disabled></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server" class="user-profile-info" Text="" disabled></asp:TextBox>
+                    <asp:TextBox ID="TextBox3" runat="server" class="user-profile-info" Text="" disabled></asp:TextBox>
                 
-                    <asp:TextBox ID="TextBox4" runat="server" class="user-profile-info" Text="" ></asp:TextBox>
+                    <asp:TextBox ID="TextBox4" runat="server" class="user-profile-info" Text="" disabled></asp:TextBox>
                 </div>
             </div>
          

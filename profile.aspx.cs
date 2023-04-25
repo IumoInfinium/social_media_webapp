@@ -47,9 +47,7 @@ public partial class profile : System.Web.UI.Page
         loggedInUserID = Convert.ToInt16(user_ds.Tables[0].Rows[0][0]);
 
 
-        if (!IsPostBack)
-        {
-            
+        if(!IsPostBack){
             string query = "select * from accounts a , follows f where a.username = '" + curr_user + "'";
             
             cmd = new SqlCommand(query, conn);
@@ -70,7 +68,7 @@ public partial class profile : System.Web.UI.Page
                 Label1.Text = curr_user;
 
                 string follow_query = "select count(follower_id) from follows where followee_id= " + loggedInUserID.ToString();
-                SqlDataAdapter follow_ad= new SqlDataAdapter(follow_query, conn);
+                SqlDataAdapter follow_ad = new SqlDataAdapter(follow_query, conn);
                 DataSet tmp_ds = new DataSet();
                 follow_ad.Fill(tmp_ds);
                 string following = tmp_ds.Tables[0].Rows[0][0].ToString();
@@ -86,7 +84,6 @@ public partial class profile : System.Web.UI.Page
                 TextBox3.Text = ds.Tables[0].Rows[0][3].ToString();
                 TextBox4.Text = ds.Tables[0].Rows[0][4].ToString();
 
-                Response.Write(followers);
                 Label3.Text = following.ToString();
                 Label4.Text = followers.ToString();
 
@@ -100,28 +97,28 @@ public partial class profile : System.Web.UI.Page
                 r1.DataSource = ds2;
                 r1.DataBind();
 
-                
+
                 // For follow-button show or not
-                string query3 = "select Count(*) from follows where follower_id ="+loggedInUserID+ " and followee_id =" + profileUserID;
+                string query3 = "select Count(*) from follows where follower_id =" + loggedInUserID + " and followee_id =" + profileUserID;
                 SqlDataAdapter ad4 = new SqlDataAdapter(query3, conn);
                 DataSet ds4 = new DataSet();
                 ad4.Fill(ds4);
 
                 if (loggedInUserID == profileUserID)
                 {
-                    FollowControl_LinkButton.Style.Add("display", "none");
+                    ProfileFollow_Button.Style.Add("display", "none");
                 }
                 else
                 {
-                    if (ds4.Tables[0].Rows.Count == 0)
+                    if (ds4.Tables[0].Rows[0][0].ToString() == "0")
                     {
                         ProfileFollow_Button.Text = "Follow";
-                        FollowControl_LinkButton.CommandName = "follow";
+                        ProfileFollow_Button.CommandName = "follow";
                     }
                     else
                     {
                         ProfileFollow_Button.Text = "Unfollow";
-                        FollowControl_LinkButton.CommandName = "unfollow";
+                        ProfileFollow_Button.CommandName = "unfollow";
                     }
                     Button1.Style.Add("display", "none");
                 }
@@ -168,10 +165,10 @@ public partial class profile : System.Web.UI.Page
             Response.Redirect("post.aspx?postid=" + e.CommandArgument);
         }
     }
-    protected void FollowControlCmd_LinkButton(object sender, CommandEventArgs e)
+    protected void ProfileFollow_Button_Click(object sender, EventArgs e)
     {
 
-        if (e.CommandName == "follow")
+        if (ProfileFollow_Button.CommandName == "follow")
         {
             string query = @"insert into follows values
             (" + loggedInUserID.ToString() + "," + profileUserID + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "')";
@@ -180,9 +177,9 @@ public partial class profile : System.Web.UI.Page
 
             ProfileFollow_Button.CommandName = "unfollow";
         }
-        else if (e.CommandName == "unfollow")
+        else if (ProfileFollow_Button.CommandName == "unfollow")
         {
-            string query = @"delete from follows where follower_id="+loggedInUserID.ToString() + ",followee_id=" + profileUserID ;
+            string query = @"delete from follows where follower_id="+loggedInUserID.ToString() + "and followee_id=" + profileUserID ;
             cmd = new SqlCommand(query, conn);
             cmd.ExecuteNonQuery();
 
