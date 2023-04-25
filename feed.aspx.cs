@@ -43,9 +43,9 @@ public partial class feed : System.Web.UI.Page
                 p.postid,
                 (SELECT accounts.username from accounts where id=p.user_id) as postBy ,
                 p.postURL, p.postContent, p.postOn, p.user_id ,
-                (select COUNT(DISTINCT(user_id)) from likes where post_id= p.postid ) likeCounts
-                 from posts p
-                 order by p.postOn desc ";
+                (select COUNT(DISTINCT(user_id)) from likes where post_id= p.postid ) likeCounts,
+                (select COUNT(*) from likes where user_id= "+ user_id + @" and post_id = p.postid )  likeState  
+                from posts p order by p.postOn desc ";
             ad = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
 
@@ -56,6 +56,7 @@ public partial class feed : System.Web.UI.Page
                 feed_repeater.DataBind();
             }
             else{
+                noFeed_Label.Style.Remove("display");
                 noFeed_Label.Text = "Seems like you don't have any following.."; 
             }
              
@@ -65,11 +66,18 @@ public partial class feed : System.Web.UI.Page
 
             int suggestion_count = suggestion_ad.Fill(ds2);
 
-            if (suggestion_count == 0) noSuggestion_Label.Text = "You have no suggestions right now..";
-            else {
+            if (suggestion_count == 0)
+            {
+                noSuggestion_Label.Style.Remove("display");
+                noSuggestion_Label.Text = "You have no suggestions right now..";
+            }
+            else
+            {
                 feedSuggestion_Repeater.DataSource = ds2;
                 feedSuggestion_Repeater.DataBind();
             }
+
+            
         }
     }
     protected void LikePost_Btn(object sender, CommandEventArgs e)
@@ -79,15 +87,15 @@ public partial class feed : System.Web.UI.Page
         //Thread.Sleep(500);
         //Label likeCount = (Label)link_button.Parent.Parent.Controls[1].Controls[0].FindControl("Label3");
         //Int32 count = likeCount.Text != "" ? Convert.ToInt32(likeCount.Text.Split(' ')[0]): 0;
-        if (img.ImageUrl == "./assets/imgs/heart.png"){
-    
+        if(e.CommandName =="like_post"){
+        //if (img.ImageUrl == "./assets/imgs/heart.png"){
                 if (link_button != null)
                 {
                     //LinkButton userlink_Btn = (LinkButton)link_button.Parent.Parent.Controls[2].FindControl("LinkButton6");
                     //string post_username = userlink_Btn.CommandArgument.ToString();
 
                     string post_id = e.CommandArgument.ToString().Split(',')[0];
-                    string user_id = e.CommandArgument.ToString().Split(',')[1];
+                    //string user_id = e.CommandArgument.ToString().Split(',')[1];
 
                     string query = "insert into likes values(" + user_id + "," + post_id + ",'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm") + "')";
 
@@ -97,18 +105,19 @@ public partial class feed : System.Web.UI.Page
                     //Thread.Sleep(500);
                     img.ImageUrl = "./assets/imgs/like.png";
                     //likeCount.Text = (count + 1).ToString();
-                    link_button.CommandName = "dislike_post";
+                    link_button.CommandName = "unlike_post";
                     Response.Redirect("feed.aspx");
                 }
             
         }
-        else if (img.ImageUrl == "./assets/imgs/like.png")
+        else if(e.CommandName == "unlike_post")
+        //else if (img.ImageUrl == "./assets/imgs/like.png")
         {
                 //LinkButton userlink_Btn = (LinkButton)link_button.Parent.Parent.Controls[2].FindControl("LinkButton6");
                 if (link_button != null)
                 {
                     string post_id = e.CommandArgument.ToString().Split(',')[0];
-                    string user_id = e.CommandArgument.ToString().Split(',')[1];
+                    //string user_id = e.CommandArgument.ToString().Split(',')[1];
                     
                     string query = "delete from likes where user_id =" + user_id + " and post_id=" + post_id + "";
 

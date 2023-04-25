@@ -459,15 +459,15 @@ body {
 @media (max-width: 1100px) {
   right-col,
   .search {
-    display: block;
-
+    display : block;
+    
   }
   .navbar-wrapper,
   .wrapper {
     width: 90%;
   }
   .wrapper {
-    display: block;
+    display : block;
   }
   .navbar-mobile-top {
     display: none;
@@ -542,11 +542,11 @@ body {
     text-align: center;
     padding: 0;
     padding-top: 12em;
-
+    display:none;
 }
 .no-suggestion-label {
    color: gray;
     text-align: center;
     padding: 0;
-    
+    display:none;
 }

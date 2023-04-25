@@ -99,16 +99,18 @@
                         </div>
                         <div class="post-content">
                             <div class="reaction-wrapper">
-                                <asp:LinkButton ID="LinkButton1" runat="server"  OnCommand="LikePost_Btn" CommandName="like_post" CommandArgument='<%# Eval("postid") + "," + Eval("user_id") %>' >
+                                <asp:LinkButton ID="LinkButton1" runat="server"  OnCommand="LikePost_Btn" CommandName='<%#(Eval("likeState") != "" && Convert.ToInt16(Eval("likeState").ToString()) == 0) ? "like_post" : "unlike_post" %>' CommandArgument='<%# Eval("postid") + "," + Eval("user_id") %>' >
                                     <asp:Image ID="Image3" ImageURL='<%#
-                                                (Eval("likeCounts").ToString() != "") ?
+                                                //(Eval("likeCounts").ToString() != "") ?
 
-                                                    (Convert.ToInt16(Eval("likeCounts").ToString()) == 0) ?
-                                                        "./assets/imgs/heart.png"
-                                                            :
-                                                        "./assets/imgs/like.png"
-                                                        :
-                                                        "./assets/imgs/heart.png"
+                                                //    (Convert.ToInt16(Eval("likeCounts").ToString()) == 0) ?
+                                                //        "./assets/imgs/heart.png"
+                                                //            :
+                                                //        "./assets/imgs/like.png"
+                                                //        :
+                                                //        "./assets/imgs/heart.png"
+                                                (Eval("likeState").ToString() == "" || Convert.ToInt16(Eval("likeState").ToString()) == 0) ? "./assets/imgs/heart.png" : "./assets/imgs/like.png"
+                                                
                                                  %>' class="icons" runat="server" />
                                 </asp:LinkButton>
                                 
@@ -266,7 +268,9 @@
               <asp:Label ID="Label9" runat="server" Text="" class="sub-text"></asp:Label>
           </div>
           <div class="action-div">
-            <button class="action-btn" disabled>Switch</button>
+              <label class="action-btn">
+                  Active
+              </label>
           </div>
         </div>
         <div class="profile-card">
