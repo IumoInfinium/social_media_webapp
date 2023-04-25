@@ -38,7 +38,7 @@
                         <img src="./assets/imgs/nav-items/logout.png" class="icons" alt="Explore Icon" />
                     </asp:LinkButton>
                 
-                    <asp:LinkButton ID="LinkButton3" runat="server" class="navbar-links" OnClick="LinkButton3_Click">
+                    <asp:LinkButton ID="LinkButton3" runat="server" class="navbar-links">
                         <img src="./assets/imgs/nav-items/like.PNG" class="icons" alt="Like Icon" />
                     </asp:LinkButton>
                

@@ -30,10 +30,5 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         Response.Redirect("create.aspx");
     }
-    protected void LinkButton3_Click(object sender, EventArgs e)
-    {
-        Session["username"] = null;
-        Session["loggedIn"] = null;
-        Response.Redirect("login.aspx");
-    }
+
 }
